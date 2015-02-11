@@ -16,3 +16,4 @@ Se trata de un script de bash, luego para Windows se necesita software addiciona
 La estructura de ficheros necesaria es bastante laxa, dirigida sobre todo por organización.
 * Los *.txt* pueden tener cualquier nombre, pero **deben** atender a un orden alfabético. *De modo que la última factura coincide con el último fichero si se lista de forma ordenada*
 * Deben estar en divididos en carpetas. En este caso por año, pero cualquier otro nombre es asumible al ser un parámetro de entrada.
+* No puede haber otros *.txt* en el árbol de subdirectorios.
