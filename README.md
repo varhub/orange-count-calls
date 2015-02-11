@@ -17,3 +17,18 @@ La estructura de ficheros necesaria es bastante laxa, dirigida sobre todo por or
 * Los *.txt* pueden tener cualquier nombre, pero **deben** atender a un orden alfabético. *De modo que la última factura coincide con el último fichero si se lista de forma ordenada*
 * Deben estar en divididos en carpetas. En este caso por año, pero cualquier otro nombre es asumible al ser un parámetro de entrada.
 * No puede haber otros *.txt* en el árbol de subdirectorios.
+
+## Mi estructura
+* Facturas Orange/
+  * count-calls.sh
+  * 2013/
+    * ... 
+  * 2014/
+    * 2014-01.pdf
+    * 2014-01.txt
+    * 2014-02.pdf
+    * 2014-02.txt
+    * ...
+    * 2014-12.pdf
+    * 2014-12.txt
+ * ... 
