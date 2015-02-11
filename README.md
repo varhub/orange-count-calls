@@ -32,3 +32,18 @@ La estructura de ficheros necesaria es bastante laxa, dirigida sobre todo por or
     * 2014-12.pdf
     * 2014-12.txt
  * ... 
+
+
+## Ejemplo
+
+`$ bash count-calls.sh last`
+```
+Resumen factura '2014/2014-08.txt'
+	Fecha inicio periodo facturado: 01/07/2014
+	Fecha fin periodo facturado: 31/07/2014
+	Total factura: 16,34
+	Numero de llamadas:     112
+	Numero de llamadas a moviles:      32
+	Minutos hablados: 1085 min
+	Minutos hablados a moviles: 512 min
+```
