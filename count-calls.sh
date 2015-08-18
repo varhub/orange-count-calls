@@ -21,6 +21,7 @@ set -u
 
 grep_llamadas=".........                      Consumo"
 grep_movil="Llamadas a m.viles"
+grep_main_info_filter='periodo facturado\|Total factura'
 
 
 ## Calls format after conversion (for awk -F'\t')
@@ -112,7 +113,7 @@ f_count_calls_to_mobile(){
 }
 
 f_main_info(){
-	cat "$1" | awk -F':' 'NR==1 || NR==2 || NR==8 { print "\t" $1": "$2}'
+	cat "$1" | grep "$grep_main_info_filter" | awk -F':' '{ print "\t" $1": "$2}'
 }
 f_summary(){
 	file=$1
