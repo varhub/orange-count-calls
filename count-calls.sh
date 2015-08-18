@@ -158,8 +158,18 @@ case $arg in
 			done
 		fi
 	;;
+	ym=*)
+		data=${arg##ym=}
+		year=${data%-*}
+		month=${data#*-}
+		file="$year/$year-$month.txt"
+		
+		if [ -e "$file" ]; then
+			f_summary "$file"
+		fi
+	;;
 	help|*)
-		echo "Usage: $0 last | all | year=<a year>" >&2
+		echo "Usage: $0 last | all | year=<a year> | ym=year-month" >&2
 esac
 
 ## OLD
