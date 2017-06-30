@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2014, Victor Arribas <v.arribas.urjc@gmail.com>.
+# Copyright (c) 2014, 2015, 2017, Victor Arribas <v.arribas.urjc@gmail.com>.
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -97,23 +97,23 @@ f_call_info_minimal(){
 
 #__HIGH LEVEL FUNCTIONS__#
 f_count_minutes_to_mobile(){
-	cat "$1" | f_parse_calls | f_format_unify | grep "$grep_movil" | f_call_info_minimal | awk -F'\t' 'BEGIN{ printf "( "; ORS=" + "} {print $3} END{ ORS="\n"; print "59 ) / 60"}' | bc
+	f_open_file | f_parse_calls | f_format_unify | grep -i "$grep_movil" | f_call_info_minimal | awk -F'\t' 'BEGIN{ printf "( "; ORS=" + "} {print $3} END{ ORS="\n"; print "59 ) / 60"}' | bc
 }
 
 f_count_minutes(){
-	cat "$1" | f_parse_calls | f_format_unify | f_call_info_minimal | awk -F'\t' 'BEGIN{ printf "( "; ORS=" + "} {print $3} END{ ORS="\n"; print "59 ) / 60"}' | bc
+	f_open_file | f_parse_calls | f_format_unify | f_call_info_minimal | awk -F'\t' 'BEGIN{ printf "( "; ORS=" + "} {print $3} END{ ORS="\n"; print "59 ) / 60"}' | bc
 }
 
 f_count_calls(){
-	cat "$1" | f_parse_calls | wc -l
+	f_open_file | f_parse_calls | wc -l
 }
 
 f_count_calls_to_mobile(){
-	cat "$1" | f_parse_calls | grep "$grep_movil" | wc -l
+	f_open_file | f_parse_calls | grep -i "$grep_movil" | wc -l
 }
 
 f_main_info(){
-	cat "$1" | grep "$grep_main_info_filter" | awk -F':' '{ print "\t" $1": "$2}'
+	f_open_file | grep "$grep_main_info_filter" | awk -F':' '{ print "\t" $1": "$2}'
 }
 f_summary(){
 	file=$1
@@ -134,6 +134,13 @@ f_summary_all(){
 
 f_get_files(){
 	find -type f -mindepth 2 -name '*.txt'
+}
+
+#__AUX FUNCTIONS__#
+f_open_file(){
+	# Required to deal with accents and file encoding
+	#cat $file
+	cat $file | iconv -f ISO-8859-1 -t UTF-8
 }
 
 #__MAIN__#
